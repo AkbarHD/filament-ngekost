@@ -15,11 +15,12 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug');
             $table->string('thumbnail');
-            $table->foreignId('city_id')->constrained(); // sdh otomatis berelasi dgn table cities
-            $table->foreignId('category_id')->constrained(); // sdh otomatis berelasi dgn table categories
+            $table->foreignId('city_id')->constrained()->cascadeOnDelete(); // sdh otomatis berelasi dgn table cities
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete(); // sdh otomatis berelasi dgn table categories
             $table->text('description');
             $table->integer('price');
             $table->text('address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
