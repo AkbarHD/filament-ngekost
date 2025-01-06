@@ -8,7 +8,7 @@ use Filament\Forms\Components\Builder;
 
 class BoardingHouseRepository implements BoardingHouseRepositoryInterface
 {
-    public function getAllBoardingHoueses($search = null, $city = null, $category = null)
+    public function getAllBoardingHouse($search = null, $city = null, $category = null)
     {
         $query = BoardingHouse::query();
         // ketika search diisi maka dia akan di jalankan
