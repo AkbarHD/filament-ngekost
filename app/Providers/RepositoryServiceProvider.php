@@ -17,7 +17,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // daftarkan repository dan interfacesnya
+        // daftarkan interface dan repository
         $this->app->bind(CityRepositoryInterface::class, CityRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(BoardingHouseRepositoryInterface::class, BoardingHouseRepository::class);
