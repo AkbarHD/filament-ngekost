@@ -19,7 +19,7 @@
         <div class="swiper-wrapper">
             @forelse ($categories as $category)
                 <div class="swiper-slide !w-fit pb-[30px]">
-                    <a href="categories.html" class="card">
+                    <a href="{{ route('category.show', $category->slug) }}" class="card">
                         <div
                             class="flex flex-col items-center w-[120px] shrink-0 rounded-[40px] p-4 pb-5 gap-3 bg-white shadow-[0px_12px_30px_0px_#0000000D] text-center">
                             <div class="w-[70px] h-[70px] rounded-full flex shrink-0 overflow-hidden">
@@ -107,7 +107,7 @@
         <div class="grid grid-cols-2 gap-4">
 
             @forelse ($cities as $city)
-                <a href="cities.html" class="card">
+                <a href="{{ route('city.show', $city->slug) }}" class="card">
                     <div
                         class="flex items-center rounded-[22px] p-[10px] gap-3 bg-white border border-white overflow-hidden hover:border-[#91BF77] transition-all duration-300">
                         <div

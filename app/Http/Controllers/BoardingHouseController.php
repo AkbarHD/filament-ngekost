@@ -29,6 +29,6 @@ class BoardingHouseController extends Controller
     public function findResults(Request $request)
     {
         $boardingHouses = $this->boardingHouseRepository->getAllBoardingHouse($request->search, $request->city, $request->category);
-        return view('pages.boarding-house.find-results', compact('boardingHouses'));
+        return view('pages.boarding-house.index', compact('boardingHouses'));
     }
 }
