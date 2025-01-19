@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/find-kost', [BoardingHouseController::class, 'find'])->name('find-kost');
 Route::get('/kost/{slug}', [BoardingHouseController::class, 'show'])->name('kost.show');
+Route::get('/kos/{slug}/rooms', [BoardingHouseController::class, 'rooms'])->name('kost.rooms');
 
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
 
