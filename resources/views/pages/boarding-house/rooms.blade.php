@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
     <div id="TopNav" class="relative flex items-center justify-between px-5 mt-[60px]">
-        <a href="details.html"
+        <a href="{{ route('kost.show', $boardingHouse->slug) }}"
             class="w-12 h-12 flex items-center justify-center shrink-0 rounded-full overflow-hidden bg-white">
             <img src="{{ asset('assets/images/icons/arrow-left.svg') }}" class="w-[28px] h-[28px]" alt="icon">
         </a>
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <form action="cust-info.html" class="relative flex flex-col gap-4 mt-5">
+    <form action="{{ route('booking', $boardingHouse->slug) }}" class="relative flex flex-col gap-4 mt-5">
         <h2 class="font-bold px-5">Available Rooms</h2>
         <div id="RoomsContainer" class="flex flex-col gap-4 px-5">
             @forelse ($boardingHouse->Rooms as $room)

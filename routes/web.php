@@ -22,3 +22,7 @@ Route::get('/city/{slug}', [CityController::class, 'show'])->name('city.show');
 
 Route::get('/find-results', [BoardingHouseController::class, 'findResults'])->name('find-kost.results');
 Route::get('/check-booking', [BookingController::class, 'check'])->name('check-booking');
+
+Route::get('/kos/booking/{slug}', [BookingController::class, 'booking'])->name('booking');
+Route::get('/kos/booking/{slug}/information', [BookingController::class, 'information'])->name('booking.information');
+Route::post('/kos/booking/{slug}/information/save', [BookingController::class, 'saveInformation'])->name('booking.information.save');
