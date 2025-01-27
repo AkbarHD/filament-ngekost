@@ -80,12 +80,12 @@
                     <div class="swiper-slide !w-fit">
                         <button
                             class="tab-link rounded-full p-[8px_14px] border border-[#F1F2F6] text-sm font-semibold hover:bg-ngekos-black hover:text-white transition-all duration-300"
-                            data-target-tab="#Testimonials-Tab">Testimonials</button>
+                            data-target-tab="#Testimonials-Tab">Testimoni</button>
                     </div>
                     <div class="swiper-slide !w-fit">
                         <button
                             class="tab-link rounded-full p-[8px_14px] border border-[#F1F2F6] text-sm font-semibold hover:bg-ngekos-black hover:text-white transition-all duration-300"
-                            data-target-tab="#Rules-Tab">Rules</button>
+                            data-target-tab="#Rules-Tab">Peraturan</button>
                     </div>
                     <div class="swiper-slide !w-fit">
                         <button
