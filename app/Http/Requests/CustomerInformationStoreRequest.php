@@ -13,7 +13,7 @@ class CustomerInformationStoreRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
+            'phone_number' => 'required',
             'duration' => 'required',
             'start_date' => 'required'
         ];

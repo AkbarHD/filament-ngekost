@@ -24,11 +24,11 @@ const paymentOptions = document.querySelectorAll('input[name="Payment"]');
 
 // Function to update price based on the selected tab
 function updatePrice() {
-    const selectedPayment = document.querySelector('input[name="Payment"]:checked').value;
+    const selectedPayment = document.querySelector('input[name="payment_method"]:checked').value;
 
-    if (selectedPayment === 'down') {
+    if (selectedPayment === 'down_payment') {
         priceElement.innerHTML = `${downPaymentPrice}`;
-    } else if (selectedPayment === 'full') {
+    } else if (selectedPayment === 'full_payment') {
         priceElement.innerHTML = `${fullPaymentPrice}`;
     }
 }

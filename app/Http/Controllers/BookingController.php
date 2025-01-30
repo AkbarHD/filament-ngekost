@@ -34,17 +34,56 @@ class BookingController extends Controller
     {
         $transaction = $this->transactionRepository->getTransactionDataFromSession();
         $boardingHouse = $this->boardingHouseRepository->getBoardingHouseBySlug($slug);
-        $room = $this->boardingHouseRepository->getBoardingHouseByid($transaction['room_id']);
+        $room = $this->boardingHouseRepository->getBoardingHouseByid($transaction['room_id']); // ambil data yang kita pilih di romms
 
         return view('pages.booking.information', compact('transaction', 'boardingHouse', 'room'));
     }
-
-
 
     public function saveInformation(CustomerInformationStoreRequest $request, $slug)
     {
         $data = $request->validated();
         $this->transactionRepository->saveTransactionDataToSession($data);
-        dd($this->transactionRepository->getTransactionDataFromSession());
+        // dd($this->transactionRepository->getTransactionDataFromSession());
+        return redirect()->route('booking.checkout', $slug);
+    }
+
+    public function checkout($slug)
+    {
+        $transaction = $this->transactionRepository->getTransactionDataFromSession();
+        // dd($transaction);
+        $boardingHouse = $this->boardingHouseRepository->getBoardingHouseBySlug($slug);
+        $room = $this->boardingHouseRepository->getBoardingHouseByid($transaction['room_id']);
+        return view('pages.booking.checkout', compact('transaction', 'boardingHouse', 'room'));
+    }
+
+    public function payment(Request $request)
+    {
+        $this->transactionRepository->saveTransactionDataToSession($request->all());
+        $transaction = $this->transactionRepository->saveTransaction($this->transactionRepository->getTransactionDataFromSession());
+        // dd($transaction);
+
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = config('midtrans.isProduction');
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = config('midtrans.isSanitized');
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = config('midtrans.is3ds');
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => $transaction->code,
+                'gross_amount' => $transaction->total_amount,
+            ],
+            'customer_details' => [
+                'first_name' => $transaction->name,
+                'email' => $transaction->email,
+                'phone' => $transaction->phone_number,
+            ],
+        ];
+
+        $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
+        return redirect($paymentUrl);
     }
 }
