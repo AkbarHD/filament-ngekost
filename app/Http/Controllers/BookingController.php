@@ -21,19 +21,19 @@ class BookingController extends Controller
 
     public function booking(Request $request, $slug)
     {
-        $this->transactionRepository->saveTransactionDataToSession($request->all()); // data akan di simpan di saveTransactionDataToSession
+        // ngambil
+        $transaction = $this->transactionRepository->saveTransactionDataToSession($request->all()); // data akan di simpan di saveTransactionDataToSession
+        // dd($this->transactionRepository->getTransactionDataFromSession());
         return redirect()->route('booking.information', $slug);
     }
-
-
 
     public function information($slug)
     {
         $transaction = $this->transactionRepository->getTransactionDataFromSession();
-        $boardingHouse = $this->boardingHouseRepository->getBoardingHouseBySlug($slug);
+        $boardingHouse = $this->boardingHouseRepository->getBoardingHouseBySlug($slug); // first
         $room = $this->boardingHouseRepository->getBoardingHouseByid($transaction['room_id']); // ambil data yang kita pilih di romms
 
-        return view('pages.booking.information', compact('transaction', 'boardingHouse', 'room'));
+        return view('pages.booking.information', compact( 'boardingHouse', 'room'));
     }
 
     public function saveInformation(CustomerInformationStoreRequest $request, $slug)

@@ -29,7 +29,7 @@
         </div>
     </div>
     <form action="{{ route('booking', $boardingHouse->slug) }}" class="relative flex flex-col gap-4 mt-5">
-        {{-- untuk kebutuhan di table transaction --}}
+        {{-- untuk kebutuhan di table transaction, akan di simpan di session --}}
         <input type="text" name="boarding_house_id" value="{{ $boardingHouse->id }}">
         <h2 class="font-bold px-5">Available Rooms</h2>
         <div id="RoomsContainer" class="flex flex-col gap-4 px-5">
